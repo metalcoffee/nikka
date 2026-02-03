@@ -1,0 +1,87 @@
+[package]
+authors = ["Sergey V. Galtsev <sergey-v-galtsev@gitlab.com>"]
+description = "Nikka is an educational operating system"
+edition = "2024"
+homepage = "https://sergey-v-galtsev.gitlab.io/labs-description/lab/book/index.html"
+license = "AGPL-3.0-or-later"
+name = "kernel"
+repository = "https://gitlab.com/sergey-v-galtsev/nikka-public"
+version = "0.5.0"
+
+[dependencies]
+acpi = "*"
+bitflags = "*"
+bootloader = { version = "0.9.*", features = ["recursive_page_table"] }
+chrono = { version = "*", default-features = false }
+derive_more = { version = "*", default-features = false, features = ["full"] }
+duplicate = "*"
+itertools = { version = "*", default-features = false }
+lazy_static = { version = "*", features = ["spin_no_std"] }
+memoffset = { version = "*", features = ["unstable_const"] }
+num-integer = { version = "*", default-features = false }
+num_enum = { version = "*", default-features = false }
+postcard = "*"
+rand = { version = "*", default-features = false, features = ["small_rng"] }
+scopeguard = { version = "*", default-features = false }
+serde = { version = "*", default-features = false, features = ["alloc"] }
+static_assertions = "*"
+tracing = { git = "https://github.com/tokio-rs/tracing", version = "*", default-features = false }
+tracing-core = { git = "https://github.com/tokio-rs/tracing", version = "*", default-features = false }
+x86 = "*"
+x86_64 = "*"
+
+ku = { path = "../ku" }
+pci = { path = "../pci" }
+pic8259 = { path = "../pic8259" }
+sentinel_frame = { path = "../sentinel_frame" }
+text = { path = "../text" }
+
+[dev-dependencies]
+enum-iterator = "*"
+introsort = { version = "*", default-features = false }
+xmas-elf = "*"
+
+[features]
+allocator-statistics = ["ku/allocator-statistics"]
+# Отключает sentinel frame
+conservative-backtraces = ["ku/conservative-backtraces"]
+forbid-leaks = []
+
+[package.metadata.bootimage]
+# Отвечает за `cargo run`.
+run-args = [
+    "-m",
+    "size=128M",
+    "-smp",
+    "cpus=4",
+    "-device",
+    "isa-debug-exit,iobase=0xF4,iosize=0x04",
+    # Для перенаправления журнала в файл `kernel/serial.out` поменяйте опцию `-serial`:
+    # "-serial", "file:serial.out",
+    "-serial",
+    "stdio",
+    # Опция `-display none` отключает окно с монитором эмулируемого компьютера.
+    "-display",
+    "none",
+    "-drive",
+    "file=../fs.img,index=1,media=disk,driver=raw",
+]
+
+# Отвечает за `cargo test ...`.
+test-args = [
+    "-m",
+    "size=128M",
+    "-smp",
+    "cpus=4",
+    "-device",
+    "isa-debug-exit,iobase=0xF4,iosize=0x04",
+    "-serial",
+    "stdio",
+    "-display",
+    "none",
+    "-drive",
+    "file=../fs.img,index=1,media=disk,driver=raw",
+]
+
+test-success-exit-code = 3
+test-timeout = 600

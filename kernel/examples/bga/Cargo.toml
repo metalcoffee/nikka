@@ -1,0 +1,41 @@
+[package]
+authors = ["Sergey V. Galtsev <sergey-v-galtsev@gitlab.com>"]
+description = "Nikka is an educational operating system"
+edition = "2024"
+homepage = "https://sergey-v-galtsev.gitlab.io/labs-description/lab/book/index.html"
+license = "AGPL-3.0-or-later"
+name = "bga"
+repository = "https://gitlab.com/sergey-v-galtsev/nikka-public"
+version = "0.5.0"
+
+[dependencies]
+bitflags = "*"
+bootloader = { version = "0.9.*", features = ["recursive_page_table"] }
+chrono = { version = "*", default-features = false }
+derive_more = { version = "*", default-features = false, features = ["full"] }
+embedded-graphics = "=0.7.1"
+embedded-graphics-core = "=0.3.3"
+embedded-plots = "=0.2.0"
+tinypci = { git = "https://github.com/sergey-v-galtsev/tinypci", version = "*", default-features = false }
+x86 = "*"
+x86_64 = "*"
+
+kernel = { path = "../../../kernel" }
+ku = { path = "../../../ku" }
+pic8259 = { path = "../../../pic8259" }
+text = { path = "../../../text" }
+
+[package.metadata.bootimage]
+# Отвечает за `cargo run`.
+run-args = [
+    "-m",
+    "size=128M",
+    "-smp",
+    "cpus=4",
+    "-device",
+    "isa-debug-exit,iobase=0xF4,iosize=0x04",
+    "-serial",
+    "stdio",
+    "-vga",
+    "std",
+]

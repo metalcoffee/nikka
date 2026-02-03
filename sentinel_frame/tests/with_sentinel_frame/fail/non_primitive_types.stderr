@@ -1,0 +1,29 @@
+error: Only primitive integer types and references are allowed
+ --> tests/with_sentinel_frame/fail/non_primitive_types.rs:6:11
+  |
+6 | fn f1(_a: (), _b: (usize,), _c: Test) {
+  |           ^^
+
+error: Only primitive integer types and references are allowed
+ --> tests/with_sentinel_frame/fail/non_primitive_types.rs:6:19
+  |
+6 | fn f1(_a: (), _b: (usize,), _c: Test) {
+  |                   ^^^^^^^^
+
+error: Only primitive integer types and references are allowed
+ --> tests/with_sentinel_frame/fail/non_primitive_types.rs:6:33
+  |
+6 | fn f1(_a: (), _b: (usize,), _c: Test) {
+  |                                 ^^^^
+
+error: Only primitive integer types and references are allowed
+  --> tests/with_sentinel_frame/fail/non_primitive_types.rs:10:17
+   |
+10 | fn f2(Test(_v): Test) {
+   |                 ^^^^
+
+error: Complex patterns are not supported in function arguments
+  --> tests/with_sentinel_frame/fail/non_primitive_types.rs:10:7
+   |
+10 | fn f2(Test(_v): Test) {
+   |       ^^^^^^^^

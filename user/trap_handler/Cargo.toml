@@ -1,0 +1,13 @@
+[package]
+authors = ["Sergey V. Galtsev <sergey-v-galtsev@gitlab.com>"]
+description = "Nikka is an educational operating system"
+edition = "2024"
+homepage = "https://sergey-v-galtsev.gitlab.io/labs-description/lab/book/index.html"
+license = "AGPL-3.0-or-later"
+name = "trap_handler"
+repository = "https://gitlab.com/sergey-v-galtsev/nikka-public"
+version = "0.5.0"
+
+[dependencies]
+ku = { path = "../../ku" }
+lib = { path = "../lib" }

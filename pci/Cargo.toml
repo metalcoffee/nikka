@@ -1,0 +1,23 @@
+[package]
+authors = ["Sergey V. Galtsev <sergey-v-galtsev@gitlab.com>"]
+description = "Nikka is an educational operating system"
+edition = "2024"
+homepage = "https://sergey-v-galtsev.gitlab.io/labs-description/lab/book/index.html"
+license = "AGPL-3.0-or-later"
+name = "pci"
+repository = "https://gitlab.com/sergey-v-galtsev/nikka-public"
+version = "0.5.0"
+
+[dependencies]
+bitflags = "*"
+derive-getters = "*"
+derive_more = { version = "*", default-features = false }
+pci-ids = "*"
+
+ku = { path = "../ku" }
+
+[dev-dependencies]
+ctor = "*"
+hex-literal = "*"
+tracing-core = { git = "https://github.com/tokio-rs/tracing", version = "*", default-features = false }
+tracing-subscriber = { git = "https://github.com/tokio-rs/tracing", features = ["env-filter"] }

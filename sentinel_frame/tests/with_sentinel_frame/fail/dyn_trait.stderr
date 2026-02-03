@@ -1,0 +1,23 @@
+error: dyn Trait types are not supported
+ --> tests/with_sentinel_frame/fail/dyn_trait.rs:8:22
+  |
+8 | fn dyn_trait_ref(v: &dyn ObjectSafeTrait) {
+  |                      ^^^^^^^^^^^^^^^^^^^
+
+error: dyn Trait types are not supported
+  --> tests/with_sentinel_frame/fail/dyn_trait.rs:13:30
+   |
+13 | fn dyn_trait_mut_ref(v: &mut dyn ObjectSafeTrait) {
+   |                              ^^^^^^^^^^^^^^^^^^^
+
+error: dyn Trait types are not supported
+  --> tests/with_sentinel_frame/fail/dyn_trait.rs:18:28
+   |
+18 | fn dyn_trait_ptr(v: *const dyn ObjectSafeTrait) {
+   |                            ^^^^^^^^^^^^^^^^^^^
+
+error: dyn Trait types are not supported
+  --> tests/with_sentinel_frame/fail/dyn_trait.rs:25:30
+   |
+25 | fn dyn_trait_mut_ptr(v: *mut dyn ObjectSafeTrait) {
+   |                              ^^^^^^^^^^^^^^^^^^^

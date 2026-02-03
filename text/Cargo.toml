@@ -1,0 +1,26 @@
+[package]
+authors = ["Sergey V. Galtsev <sergey-v-galtsev@gitlab.com>"]
+description = "Nikka is an educational operating system"
+edition = "2024"
+homepage = "https://sergey-v-galtsev.gitlab.io/labs-description/lab/book/index.html"
+license = "AGPL-3.0-or-later"
+name = "text"
+repository = "https://gitlab.com/sergey-v-galtsev/nikka-public"
+version = "0.5.0"
+
+[dependencies]
+bitflags = "*"
+derive_more = { version = "*", default-features = false }
+lazy_static = { version = "*", features = ["spin_no_std"] }
+static_assertions = "*"
+volatile = "=0.4.5"
+x86 = "*"
+x86_64 = "*"
+
+ku = { path = "../ku" }
+serial = { path = "../serial" }
+
+[dev-dependencies]
+ctor = "*"
+tracing-core = { git = "https://github.com/tokio-rs/tracing", version = "*", default-features = false }
+tracing-subscriber = { git = "https://github.com/tokio-rs/tracing", features = ["env-filter"] }

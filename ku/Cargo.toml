@@ -1,0 +1,78 @@
+[package]
+authors = ["Sergey V. Galtsev <sergey-v-galtsev@gitlab.com>"]
+description = "Nikka is an educational operating system"
+edition = "2024"
+homepage = "https://sergey-v-galtsev.gitlab.io/labs-description/lab/book/index.html"
+license = "AGPL-3.0-or-later"
+name = "ku"
+repository = "https://gitlab.com/sergey-v-galtsev/nikka-public"
+version = "0.5.0"
+
+[dependencies]
+atomic-memcpy = "*"
+bitflags = "*"
+chrono = { version = "*", default-features = false }
+derive-getters = "*"
+derive_more = { version = "*", default-features = false, features = ["full"] }
+duplicate = "*"
+enum-iterator = "*"
+heapless = "*"
+itertools = { version = "*", default-features = false }
+memoffset = { version = "*", features = ["unstable_const"] }
+num-traits = { version = "*", default-features = false }
+num_enum = { version = "*", default-features = false }
+number_prefix = { version = "*", default-features = false }
+postcard = "*"
+rlibc = "*"
+scopeguard = { version = "*", default-features = false }
+serde = { version = "*", default-features = false }
+spin = "*"
+static_assertions = "*"
+tracing = { git = "https://github.com/tokio-rs/tracing", version = "*", default-features = false }
+tracing-core = { git = "https://github.com/tokio-rs/tracing", version = "*", default-features = false }
+x86 = "*"
+x86_64 = "*"
+xmas-elf = "*"
+
+blink-alloc = { version = "*", features = ["sync"], optional = true }
+dlmalloc = { version = "*", features = ["global"], optional = true }
+frusa = { version = "*", optional = true }
+good_memory_allocator = { version = "*", optional = true }
+jemallocator = { version = "*", optional = true }
+mimalloc = { version = "*", optional = true }
+ring-alloc = { version = "*", optional = true }
+rlsf = { version = "*", optional = true }
+talc = { version = "*", optional = true }
+tcmalloc-better = { version = "*", optional = true }
+wee_alloc = { version = "*", optional = true }
+
+sentinel_frame = { path = "../sentinel_frame" }
+
+[dev-dependencies]
+anyhow = "*"
+ctor = "*"
+nix = { version = "0.27.*", features = ["mman"] }
+rand = { version = "*", default-features = false, features = ["alloc", "small_rng"] }
+rstest = "*"
+serde = { version = "*", default-features = false, features = ["alloc", "derive"] }
+serde_json = { version = "*", default-features = false, features = ["alloc"] }
+tracing-subscriber = { git = "https://github.com/tokio-rs/tracing", features = ["env-filter"] }
+
+[features]
+allocator-statistics = []
+benchmark = [
+    "blink-alloc",
+    "dlmalloc",
+    "frusa",
+    "good_memory_allocator",
+    "jemallocator",
+    "mimalloc",
+    "ring-alloc",
+    "rlsf",
+    "talc",
+    "tcmalloc-better",
+    "wee_alloc",
+]
+# Отключает sentinel frame
+conservative-backtraces = []
+forbid-leaks = []

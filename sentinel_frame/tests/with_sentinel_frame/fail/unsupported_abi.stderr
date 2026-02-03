@@ -1,0 +1,5 @@
+error: Only default and C calling conventions are supported
+ --> tests/with_sentinel_frame/fail/unsupported_abi.rs:4:1
+  |
+4 | extern "Rust" fn test() {
+  | ^^^^^^^^^^^^^

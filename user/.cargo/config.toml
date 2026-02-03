@@ -1,0 +1,6 @@
+[build]
+rustflags = ["--codegen", "link-args=-Tuser/user.lds", "--codegen", "force-frame-pointers=yes"]
+target = "../kernel/kernel.json"
+
+[unstable]
+build-std = ["alloc", "core"]

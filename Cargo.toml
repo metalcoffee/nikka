@@ -1,0 +1,45 @@
+[workspace]
+members = [
+    "kernel",
+    "ku",
+    "pci",
+    "pic8259",
+    "sentinel_frame",
+    "serial",
+    "text",
+
+    "user/cow_fork",
+    "user/eager_fork",
+    "user/exit",
+    "user/lib",
+    "user/log_value",
+    "user/loop",
+    "user/check_context",
+    "user/memory_syscalls",
+    "user/page_fault",
+    "user/sched_yield",
+    "user/trap_handler",
+
+    "kernel/examples/bga",
+]
+
+resolver = "2"
+
+[profile.user]
+inherits = "dev"
+
+[profile.ci]
+debug = true
+debug-assertions = true
+incremental = true
+inherits = "dev"
+opt-level = 3
+overflow-checks = true
+
+[profile.benchmark]
+debug = false
+debug-assertions = false
+incremental = true
+inherits = "release"
+opt-level = 3
+overflow-checks = false

@@ -1,0 +1,5 @@
+error: Functions with more than 6 arguments are not supported
+ --> tests/with_sentinel_frame/fail/too_many_args.rs:4:17
+  |
+4 | fn lots_of_args(_v1: usize, _v2: isize, _v3: u64, _v4: u32, _v5: u8, _v6: i8, _v7: i16) {
+  |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
